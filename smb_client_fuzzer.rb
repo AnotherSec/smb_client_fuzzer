@@ -17,7 +17,7 @@ class MetasploitModule < Msf::Auxiliary
   def on_client_data(client)
     return if @clients[client][:fuzzed]
     
-    data = client.get_once(-1, 10)  # ↑ Timeout 10s
+    data = client.get_once(-1, 10) 
     return unless data && data.length > 4
     
     info = @clients[client]
@@ -48,4 +48,5 @@ class MetasploitModule < Msf::Auxiliary
       print_error("Unknown SMB magic: #{data[0,8].unpack('H*')}")
     end
   end
+
 end
